@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="App_Subtitle">Management System</s:String>
+
+    <s:String x:Key="Nav_Section_Main">MAIN</s:String>
+    <s:String x:Key="Nav_Section_Operations">OPERATIONS</s:String>
+    <s:String x:Key="Nav_Section_Analysis">ANALYSIS</s:String>
+    <s:String x:Key="Nav_Section_System">SYSTEM</s:String>
+
+    <s:String x:Key="Nav_Dashboard">  📊  Dashboard</s:String>
+    <s:String x:Key="Nav_Donors">  👤  Donors</s:String>
+    <s:String x:Key="Nav_BloodStock">  🩸  Blood Stock</s:String>
+    <s:String x:Key="Nav_Hospitals">  🏥  Hospitals</s:String>
+    <s:String x:Key="Nav_BloodRequests">  📋  Blood Requests</s:String>
+    <s:String x:Key="Nav_Donations">  💉  Donation Records</s:String>
+    <s:String x:Key="Nav_Appointments">  📅  Appointments</s:String>
+    <s:String x:Key="Nav_Compatibility">  🔬  Compatibility</s:String>
+    <s:String x:Key="Nav_Reports">  📈  Reports</s:String>
+    <s:String x:Key="Nav_UserMgmt">  👥  User Management</s:String>
+    <s:String x:Key="Nav_AuditLog">  📋  Audit Log</s:String>
+    <s:String x:Key="Nav_SignOut">  ⬅  Sign Out</s:String>
+
+    <s:String x:Key="Page_Dashboard">Dashboard</s:String>
+    <s:String x:Key="Page_Donors">👤  Donor Management</s:String>
+    <s:String x:Key="Page_BloodStock">🩸  Blood Stock Management</s:String>
+    <s:String x:Key="Page_Hospitals">🏥  Hospital Management</s:String>
+    <s:String x:Key="Page_BloodRequests">📋  Blood Requests</s:String>
+    <s:String x:Key="Page_Donations">💉  Donation Records</s:String>
+    <s:String x:Key="Page_Appointments">📅  Appointment Scheduler</s:String>
+    <s:String x:Key="Page_Compatibility">🔬  Blood Compatibility Checker</s:String>
+    <s:String x:Key="Page_Reports">📈  Reports &amp; Analytics</s:String>
+    <s:String x:Key="Page_UserMgmt">👥  User Management</s:String>
+    <s:String x:Key="Page_AuditLog">📋  Audit Log</s:String>
+
+</ResourceDictionary>

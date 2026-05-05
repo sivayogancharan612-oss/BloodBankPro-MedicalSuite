@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="App_Subtitle">කළමනාකරණ පද්ධතිය</s:String>
+
+    <s:String x:Key="Nav_Section_Main">ප්‍රධාන</s:String>
+    <s:String x:Key="Nav_Section_Operations">මෙහෙයුම්</s:String>
+    <s:String x:Key="Nav_Section_Analysis">විශ්ලේෂණය</s:String>
+    <s:String x:Key="Nav_Section_System">පද්ධතිය</s:String>
+
+    <s:String x:Key="Nav_Dashboard">  📊  ප්‍රධාන පුවරුව</s:String>
+    <s:String x:Key="Nav_Donors">  👤  රුධිර දායකයින්</s:String>
+    <s:String x:Key="Nav_BloodStock">  🩸  රුධිර සංචිතය</s:String>
+    <s:String x:Key="Nav_Hospitals">  🏥  රෝහල්</s:String>
+    <s:String x:Key="Nav_BloodRequests">  📋  රුධිර ඉල්ලීම්</s:String>
+    <s:String x:Key="Nav_Donations">  💉  ත්‍යාග වාර්තා</s:String>
+    <s:String x:Key="Nav_Appointments">  📅  හමුවීම්</s:String>
+    <s:String x:Key="Nav_Compatibility">  🔬  ගැළපුම</s:String>
+    <s:String x:Key="Nav_Reports">  📈  වාර්තා</s:String>
+    <s:String x:Key="Nav_UserMgmt">  👥  පරිශීලක කළමනාකරණය</s:String>
+    <s:String x:Key="Nav_AuditLog">  📋  විගණන ලොගය</s:String>
+    <s:String x:Key="Nav_SignOut">  ⬅  ඉවත් වන්න</s:String>
+
+    <s:String x:Key="Page_Dashboard">ප්‍රධාන පුවරුව</s:String>
+    <s:String x:Key="Page_Donors">👤  රුධිර දායක කළමනාකරණය</s:String>
+    <s:String x:Key="Page_BloodStock">🩸  රුධිර සංචිත කළමනාකරණය</s:String>
+    <s:String x:Key="Page_Hospitals">🏥  රෝහල් කළමනාකරණය</s:String>
+    <s:String x:Key="Page_BloodRequests">📋  රුධිර ඉල්ලීම්</s:String>
+    <s:String x:Key="Page_Donations">💉  ත්‍යාග වාර්තා</s:String>
+    <s:String x:Key="Page_Appointments">📅  හමුවීම් කාලසටහන</s:String>
+    <s:String x:Key="Page_Compatibility">🔬  රුධිර ගැළපුම් පරීක්ෂාව</s:String>
+    <s:String x:Key="Page_Reports">📈  වාර්තා සහ විශ්ලේෂණය</s:String>
+    <s:String x:Key="Page_UserMgmt">👥  පරිශීලක කළමනාකරණය</s:String>
+    <s:String x:Key="Page_AuditLog">📋  විගණන ලොගය</s:String>
+
+</ResourceDictionary>

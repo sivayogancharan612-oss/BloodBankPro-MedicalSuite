@@ -1,0 +1,114 @@
+﻿<Window x:Class="BloodBankPro.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Blood Bank Pro" Height="580" Width="440"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="#F9F9F9" WindowStyle="None" AllowsTransparency="False">
+
+    <Border Background="#F9F9F9" CornerRadius="0">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="0" Opacity="0"/>
+        </Border.Effect>
+        <Grid>
+            <Border Height="4" VerticalAlignment="Top">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#8B0000" Offset="0"/>
+                        <GradientStop Color="#C62828" Offset="0.5"/>
+                        <GradientStop Color="#8B0000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <StackPanel VerticalAlignment="Center" Margin="50,0">
+                <StackPanel HorizontalAlignment="Center" Margin="0,0,0,32">
+                    <Border Background="#FFF0F0" Width="84" Height="84" CornerRadius="42"
+                            HorizontalAlignment="Center" Margin="0,0,0,18"
+                            BorderBrush="#8B0000" BorderThickness="2.5">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="0" BlurRadius="24" Opacity="0.15" Color="#8B0000"/>
+                        </Border.Effect>
+                        <Viewbox Width="44" Height="44" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Canvas Width="48" Height="48">
+                                <Path Fill="#8B0000"
+                                      Data="M24,2 C24,2 6,22 6,32 C6,42 14,48 24,48 C34,48 42,42 42,32 C42,22 24,2 24,2 Z"/>
+                                <Path Fill="#FFF0F0"
+                                      Data="M21,22 L27,22 L27,28 L33,28 L33,34 L27,34 L27,40 L21,40 L21,34 L15,34 L15,28 L21,28 Z"/>
+                            </Canvas>
+                        </Viewbox>
+                    </Border>
+                    <TextBlock Text="BLOOD BANK" FontSize="22" FontWeight="Bold"
+                               FontFamily="Segoe UI Semibold"
+                               Foreground="#1A1A2E" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Advanced Management System" FontSize="11"
+                               FontFamily="Segoe UI"
+                               Foreground="#5A6A7A" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                </StackPanel>
+                <TextBlock Text="USERNAME" FontSize="10" FontWeight="SemiBold"
+                           FontFamily="Segoe UI"
+                           Foreground="#5A6A7A" Margin="0,0,0,6"/>
+                <TextBox x:Name="TxtUsername" Style="{StaticResource FTB}"
+                         KeyDown="OnKeyDown"/>
+
+                <TextBlock Text="PASSWORD" FontSize="10" FontWeight="SemiBold"
+                           FontFamily="Segoe UI"
+                           Foreground="#5A6A7A" Margin="0,4,0,6"/>
+                <PasswordBox x:Name="PwdPassword" Height="40" Padding="12,8"
+                             FontSize="13" FontFamily="Segoe UI"
+                             Background="#FFFFFF" Foreground="#1A1A2E"
+                             BorderBrush="#D5D8DC" BorderThickness="1"
+                             Margin="0,0,0,6" KeyDown="OnKeyDown"/>
+
+                <TextBlock x:Name="TxtError" Text="" Foreground="#8B0000"
+                           FontSize="12" HorizontalAlignment="Center"
+                           Margin="0,6,0,0" Visibility="Collapsed"/>
+
+                <Button Content="SIGN IN" Height="48" Margin="0,20,0,0"
+                        Style="{StaticResource PrimaryBtn}"
+                        FontSize="14" FontWeight="Bold"
+                        Click="BtnLogin_Click"/>
+                <Border Background="#FFFFFF" CornerRadius="10" Padding="16,12"
+                        Margin="0,24,0,0" BorderBrush="#E0E4E8" BorderThickness="1">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="2" BlurRadius="10" Opacity="0.06" Color="Black"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock Text="DEMO ACCOUNTS" FontSize="10" FontWeight="SemiBold"
+                                   FontFamily="Segoe UI"
+                                   Foreground="#8795A5" HorizontalAlignment="Center"
+                                   Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#FFF5F5" CornerRadius="8"
+                                    Padding="10,8" Margin="0,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Admin" FontSize="11" FontWeight="Bold"
+                                               Foreground="#8B0000" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="admin / admin123" FontSize="11"
+                                               Foreground="#5A6A7A" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#F0FAFA" CornerRadius="8"
+                                    Padding="10,8" Margin="4,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Staff" FontSize="11" FontWeight="Bold"
+                                               Foreground="#00838F" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="staff / staff123" FontSize="11"
+                                               Foreground="#5A6A7A" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Ellipse Width="7" Height="7" Fill="#2E7D32" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="SQL Server LocalDB Connected" FontSize="11" Foreground="#8795A5"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

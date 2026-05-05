@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="BloodBankPro.Views.UndoFulfillWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Fulfillment Pending" Width="420" Height="240"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#FFFFFF"
+        WindowStyle="ToolWindow">
+    <Grid Margin="30,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="⚡ Request Fulfilled" FontSize="18" FontWeight="Bold"
+                   FontFamily="Segoe UI Semibold" Foreground="#8B0000" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="1" x:Name="TxtDetail" Text="" FontSize="13"
+                   FontFamily="Segoe UI" Foreground="#1A1A2E" TextWrapping="Wrap" Margin="0,0,0,16"/>
+
+        <Border Grid.Row="2" Background="#FFF8F8" CornerRadius="8"
+                BorderBrush="#8B000030" BorderThickness="1" Padding="14,10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Auto-committing in " FontSize="13" Foreground="#5A6A7A"
+                           FontFamily="Segoe UI" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TxtCountdown" Text="10" FontSize="22" FontWeight="Bold"
+                           Foreground="#8B0000" FontFamily="Segoe UI Semibold"
+                           VerticalAlignment="Center" Margin="6,0"/>
+                <TextBlock Text="seconds..." FontSize="13" Foreground="#5A6A7A"
+                           FontFamily="Segoe UI" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button x:Name="BtnUndo" Content="↩  Undo" Width="110" Height="38"
+                    Background="#B71C1C" Foreground="White" BorderThickness="0"
+                    FontSize="13" FontWeight="SemiBold" FontFamily="Segoe UI"
+                    Cursor="Hand" Click="BtnUndo_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#D32F2F"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

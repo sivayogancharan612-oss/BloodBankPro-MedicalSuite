@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="BloodBankPro.Views.BloodRequestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="OnLoaded" Background="#F9F9F9">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#FFFFFF" Padding="24,16" BorderBrush="#E0E4E8" BorderThickness="0,0,0,1">
+            <Border.Effect><DropShadowEffect ShadowDepth="1" BlurRadius="6" Opacity="0.04" Color="Black"/></Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource Page_BloodRequests}" Style="{StaticResource PageHeader}"/>
+                    <TextBlock Text="Patient blood requests sorted by urgency — Critical first" Style="{StaticResource PageSub}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button Content="📤 Export" Style="{StaticResource IconBtn}" Margin="0,0,8,0" Click="BtnExport_Click"/>
+                    <Button Content="+ New Request" Style="{StaticResource PrimaryBtn}" Click="BtnAdd_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+            <Border Grid.Row="0" Style="{StaticResource Card}" Padding="14,10" Margin="0,0,0,12">
+                <Border.Effect><DropShadowEffect ShadowDepth="1" BlurRadius="6" Opacity="0.04" Color="Black"/></Border.Effect>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🔍" FontSize="14" Foreground="#5A6A7A" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBox x:Name="TxtSearch" Height="34" Width="180" Padding="8,6" FontSize="13"
+                             Background="#FFFFFF" Foreground="#1A1A2E" BorderBrush="#D5D8DC" BorderThickness="1"
+                             CaretBrush="#8B0000" Margin="0,0,10,0" TextChanged="OnFilter"/>
+                    <ComboBox x:Name="CmbBlood" Style="{StaticResource FCB}" Height="34" Width="105" Margin="0,0,10,0" SelectionChanged="OnFilter">
+                        <ComboBoxItem Content="All Types" IsSelected="True"/>
+                        <ComboBoxItem Content="A+"/><ComboBoxItem Content="A-"/><ComboBoxItem Content="B+"/><ComboBoxItem Content="B-"/>
+                        <ComboBoxItem Content="AB+"/><ComboBoxItem Content="AB-"/><ComboBoxItem Content="O+"/><ComboBoxItem Content="O-"/>
+                    </ComboBox>
+                    <ComboBox x:Name="CmbUrgency" Style="{StaticResource FCB}" Height="34" Width="115" Margin="0,0,10,0" SelectionChanged="OnFilter">
+                        <ComboBoxItem Content="All Urgency" IsSelected="True"/>
+                        <ComboBoxItem Content="Critical"/><ComboBoxItem Content="High"/>
+                        <ComboBoxItem Content="Medium"/><ComboBoxItem Content="Low"/>
+                    </ComboBox>
+                    <ComboBox x:Name="CmbStatus" Style="{StaticResource FCB}" Height="34" Width="115" SelectionChanged="OnFilter">
+                        <ComboBoxItem Content="All Status" IsSelected="True"/>
+                        <ComboBoxItem Content="Pending"/><ComboBoxItem Content="Approved"/>
+                        <ComboBoxItem Content="Fulfilled"/><ComboBoxItem Content="Rejected"/>
+                    </ComboBox>
+                    <TextBlock x:Name="TxtCount" Text="" FontSize="12" Foreground="#8795A5" VerticalAlignment="Center" Margin="16,0,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="1" Style="{StaticResource Card}">
+                <Border.Effect><DropShadowEffect ShadowDepth="2" BlurRadius="10" Opacity="0.06" Color="Black"/></Border.Effect>
+                <DataGrid x:Name="DgRequests" Style="{StaticResource DarkGrid}"
+                          RowStyle="{StaticResource DarkRow}" CellStyle="{StaticResource DarkCell}">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#F6F8FA"/>
+                            <Setter Property="Foreground" Value="#E65100"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Padding" Value="10,0"/>
+                            <Setter Property="BorderBrush" Value="#E0E4E8"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID"        Binding="{Binding Id}"           Width="45"/>
+                        <DataGridTextColumn Header="Hospital"  Binding="{Binding HospitalName}" Width="160"/>
+                        <DataGridTextColumn Header="Patient"   Binding="{Binding PatientName}"  Width="140"/>
+                        <DataGridTextColumn Header="Blood"     Binding="{Binding BloodType}"    Width="70"/>
+                        <DataGridTextColumn Header="Units"     Binding="{Binding UnitsNeeded}"  Width="60"/>
+                        <DataGridTemplateColumn Header="Urgency" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="4" Padding="6,3" Margin="4,4" HorizontalAlignment="Left">
+                                        <Border.Background><Binding Path="UrgencyColor"/></Border.Background>
+                                        <TextBlock Text="{Binding UrgencyLevel}" Foreground="White"
+                                                   FontSize="11" FontWeight="Bold"/>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Status" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Status}" FontWeight="SemiBold" FontSize="12"
+                                               Foreground="{Binding StatusColor}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Date"      Binding="{Binding RequestDate, StringFormat='yyyy-MM-dd'}" Width="100"/>
+                        <DataGridTextColumn Header="Notes"     Binding="{Binding Notes}"         Width="130"/>
+                        <DataGridTemplateColumn Header="Actions" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="4,2">
+                                        <Button Content="⚡ Fulfill" Style="{StaticResource FulfillBtn}"
+                                                Margin="0,0,5,0" Click="BtnFulfill_Click" Tag="{Binding}"
+                                                IsEnabled="{Binding CanFulfill}"/>
+                                        <Button Content="Edit" Style="{StaticResource EditBtn}" Click="BtnEdit_Click" Tag="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn x:Name="ColRequestDelete" Header="Delete" Width="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="4,2">
+                                        <Button Content="Delete" Style="{StaticResource DelBtn}" Click="BtnDelete_Click" Tag="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+        <Grid x:Name="Overlay" Grid.RowSpan="2" Visibility="Collapsed" Background="#88000000">
+            <Border Background="#FFFFFF" Width="490" CornerRadius="14" VerticalAlignment="Center"
+                    BorderBrush="#E6510030" BorderThickness="1" MaxHeight="640">
+                <Border.Effect><DropShadowEffect ShadowDepth="4" BlurRadius="20" Opacity="0.15" Color="Black"/></Border.Effect>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="32,26">
+                        <TextBlock x:Name="FrmTitle" Text="New Blood Request" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI Semibold" Foreground="#E65100" Margin="0,0,0,18"/>
+                        <TextBlock Text="HOSPITAL *" Style="{StaticResource FL}"/>
+                        <ComboBox x:Name="FHospital" Style="{StaticResource FCB}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                        <TextBlock Text="PATIENT NAME *" Style="{StaticResource FL}"/>
+                        <TextBox x:Name="FPatient" Style="{StaticResource FTB}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="BLOOD TYPE *" Style="{StaticResource FL}"/>
+                                <ComboBox x:Name="FBlood" Style="{StaticResource FCB}">
+                                    <ComboBoxItem Content="A+"/><ComboBoxItem Content="A-"/><ComboBoxItem Content="B+"/><ComboBoxItem Content="B-"/>
+                                    <ComboBoxItem Content="AB+"/><ComboBoxItem Content="AB-"/><ComboBoxItem Content="O+"/><ComboBoxItem Content="O-"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="UNITS NEEDED *" Style="{StaticResource FL}"/>
+                                <TextBox x:Name="FUnits" Style="{StaticResource FTB}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="URGENCY LEVEL *" Style="{StaticResource FL}"/>
+                                <ComboBox x:Name="FUrgency" Style="{StaticResource FCB}">
+                                    <ComboBoxItem Content="Critical"/><ComboBoxItem Content="High"/>
+                                    <ComboBoxItem Content="Medium" IsSelected="True"/><ComboBoxItem Content="Low"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="STATUS" Style="{StaticResource FL}"/>
+                                <ComboBox x:Name="FStatus" Style="{StaticResource FCB}">
+                                    <ComboBoxItem Content="Pending" IsSelected="True"/><ComboBoxItem Content="Approved"/>
+                                    <ComboBoxItem Content="Fulfilled"/><ComboBoxItem Content="Rejected"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="NOTES" Style="{StaticResource FL}"/>
+                        <TextBox x:Name="FNotes" Style="{StaticResource FTB}" Height="64" TextWrapping="Wrap" AcceptsReturn="True"/>
+                        <TextBlock x:Name="FError" Text="" Foreground="#8B0000" FontSize="12" Margin="0,0,0,8" Visibility="Collapsed" TextWrapping="Wrap"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+                            <Button Content="Cancel" Style="{StaticResource CancelBtn}" Margin="0,0,10,0" Click="BtnCancel_Click"/>
+                            <Button Content="💾  Save Request" Style="{StaticResource PrimaryBtn}" Click="BtnSave_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
+
