@@ -20,5 +20,6 @@ Database: Microsoft SQL Server LocalDB
 Architecture: Scoped Resource Management with automated connection disposal.  
 
 👥 Development Team
+
 Lead Architect 
 UI/UX & Security:Charan
